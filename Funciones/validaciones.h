@@ -1,0 +1,1 @@
+/*funciones dedicadas ingreso seguro de tipos de dato*/

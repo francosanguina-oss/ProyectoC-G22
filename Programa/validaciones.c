@@ -1,0 +1,1 @@
+/*logica, rangos, mensajes de advertencia*/
