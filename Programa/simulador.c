@@ -1,7 +1,8 @@
 /*implementacion de algoritmos de simulacion, calculos fisicos,
 actualizacion de estado de juego y logica de negocio*/
 #include <stdio.h>
-#include "../Funciones/simulador.h"
+#include "../Funciones/simulador.h" /* este no es el formato correcto para llamar ambiente */
+#include <simulador.h> /* se usa este */
 
 void Configurar(void)       { printf("[Configurar: en construccion]\n"); }
 void Energia_cinetica(void) { printf("[Energia cinetica: en construccion]\n"); }

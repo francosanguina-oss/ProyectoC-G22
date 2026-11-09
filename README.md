@@ -16,3 +16,6 @@ Breve detalle de funcionamiento:
 Instrucciones claras de compilación y ejecución; 
 
 VIDEO:
+
+Registro detallado del uso de Inteligencia Artificial:
+Las IA usadas para generar ideas y resolver dudas fueron: Gemini y Claude
