@@ -3,23 +3,21 @@ actualizacion de estado de juego y logica de negocio*/
 #include "simulador.h" /* se usa este */
 #include <stdio.h>
 
-void Configurar(void)       
+void Configurar(struct Nave *minave)       /* *minave = minave */ /* ahora P se llama minave */ 
 { 
-  struct Nave minave;             /*nuevo (P)*/
-  struct Nave *P = &minave;      /* P = minave */
   
   printf("introduce masa: ");
-  scanf("%d", &(*P).Masa);       /* esc() = P.masa */  /* scan f se comporta como puntero  *scanf = P.masa */
+  scanf("%d", &(*minave).Masa);       /* esc() = P.masa */  /* scan f se comporta como puntero  *scanf = P.masa */
   
   printf("introduce v: ");
-  scanf("%d", &(*P).Velocidad);
+  scanf("%d", &(*minave).Velocidad);
 
   printf("introduce com: ");
-  scanf("%d", &(*P).Combustible); 
+  scanf("%d", &(*minave).Combustible); 
   
-  printf("Masa elegida: %d\n", (*P).Masa);
-  printf("Velocidad elegido: %d\n", (*P).Velocidad);
-  printf("Combustible elegido: %d\n", (*P).Combustible);
+  printf("Masa elegida: %d\n", (*minave).Masa);
+  printf("Velocidad elegido: %d\n", (*minave).Velocidad);
+  printf("Combustible elegido: %d\n", (*minave).Combustible);
 
     printf("PROCESO TERMINADO\n"); 
 }
@@ -28,8 +26,8 @@ void Configurar(void)
 
 
 
-void Energia_cinetica(void) { printf("[Energia cinetica: en construccion]\n"); }
-void Trabajo(void)          { printf("[Trabajo: en construccion]\n"); }
-void Simulacion(void)       { printf("[Simulacion: en construccion]\n"); }
-void Comparar_energia(void) { printf("[Comparar energia: en construccion]\n"); }
-void Reporte_final(void)    { printf("[Reporte final: en construccion]\n"); }
+void Energia_cinetica(struct Nave *minave) { printf("[Energia cinetica: en construccion]\n"); }
+void Trabajo(struct Nave *minave)          { printf("[Trabajo: en construccion]\n"); }
+void Simulacion(struct Nave *minave)       { printf("[Simulacion: en construccion]\n"); }
+void Comparar_energia(struct Nave *minave) { printf("[Comparar energia: en construccion]\n"); }
+void Reporte_final(struct Nave *minave)    { printf("[Reporte final: en construccion]\n"); }

@@ -1,5 +1,6 @@
 /*MAIN(), menu principal de navegacion, flujo del programa*/
 #include "validaciones.h"
+#include "simulador.h"
 #include <stdio.h>
 
 

@@ -10,11 +10,11 @@ int Velocidad;
 int Combustible;
 };
 
-void Configurar(void);
-void Energia_cinetica(void);
-void Trabajo(void);
-void Simulacion(void);
-void Comparar_energia(void);
-void Reporte_final(void);
+void Configurar(struct Nave *minave);
+void Energia_cinetica(struct Nave *minave);
+void Trabajo(struct Nave *minave);
+void Simulacion(struct Nave *minave);
+void Comparar_energia(struct Nave *minave);
+void Reporte_final(struct Nave *minave);
 
 #endif

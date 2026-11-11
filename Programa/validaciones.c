@@ -5,6 +5,7 @@
 void menu_principal(void)  /* esto va en validaciones.c */
 {
     int opcion;
+    struct Nave minave = {0};             /*nuevo (P)*/ /*todos los valores en nave son 0*/
 
     do {
 
@@ -26,17 +27,17 @@ void menu_principal(void)  /* esto va en validaciones.c */
         }
 
         if (opcion == 1) {
-            Configurar();
+            Configurar(&minave);
         } else if (opcion == 2) {
-            Energia_cinetica();
+            Energia_cinetica(&minave);
         } else if (opcion == 3) {
-            Trabajo();
+            Trabajo(&minave);
         } else if (opcion == 4) {
-            Simulacion();
+            Simulacion(&minave);
         } else if (opcion == 5) {
-            Comparar_energia();
+            Comparar_energia(&minave);
         } else if (opcion == 6) {
-            Reporte_final();
+            Reporte_final(&minave);
         } else if (opcion == 0) {
             printf("Gracias por usar esta simulacion!\n");
         } else {
