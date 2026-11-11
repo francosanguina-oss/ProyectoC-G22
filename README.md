@@ -33,7 +33,7 @@ Para ejecutar el simulador, asegúrese de tener instalado el compilador de C lla
 ## coloque el siguiente codigo en la terminal:
 
 
-    * gcc Programa/*.c -I funciones -o programa
+    gcc Programa/*.c -I funciones -o programa
     
 
 3. Ejecutar el simulador:
@@ -42,7 +42,7 @@ Para ejecutar el simulador, asegúrese de tener instalado el compilador de C lla
 ## coloque el siguiente codigo en la terminal
 
 
-    * .\programa.exe
+    .\programa.exe
 
 
 VIDEO:
@@ -65,4 +65,4 @@ que no pertenecian] (gemini)
 
 
 "problema, no se compila el codigo por error 'No such file or directory en #include 'validacion.h'" 
-[gcc no podia correr el codigo correctamente dentro de visual studio code, la terminal generaba errores porque solo leia un file local sin tener en cuenta el resto, por tanto gemini me facilitó un comando para que gcc que permite ejecutar el codigo en la terminal sin ningun error] (gemini)
+[gcc no podia correr el codigo correctamente dentro de visual studio code, la terminal generaba errores porque solo leia un file local sin tener en cuenta el resto, por tanto gemini facilitó un comando para que gcc que permite ejecutar el codigo en la terminal sin ningun error] (gemini)

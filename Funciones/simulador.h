@@ -3,6 +3,13 @@ y prototipos de funciones publicas de la simulacion*/
 #ifndef SIMULADOR_H
 #define SIMULADOR_H
 
+struct Nave
+{
+int Masa;
+int Velocidad;
+int Combustible;
+};
+
 void Configurar(void);
 void Energia_cinetica(void);
 void Trabajo(void);
