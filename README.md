@@ -18,6 +18,33 @@ Breve detalle de funcionamiento: La simulacion empieza pidiendote datos los cual
 
 Instrucciones claras de compilación y ejecución; 
 
+
+Usamos visual studio para la creacion y compilacion del codigo.
+Para ejecutar el simulador, asegúrese de tener instalado el compilador de C llamado "gcc" en su sistema.
+
+### Pasos para compilar y ejecutar:
+
+1. Abra la terminal en la raíz del proyecto (Proyecto_Artemis).
+
+
+2. Compilar el proyecto:
+
+
+## coloque el siguiente codigo en la terminal:
+
+
+    * gcc Programa/*.c -I funciones -o programa
+    
+
+3. Ejecutar el simulador:
+
+
+## coloque el siguiente codigo en la terminal
+
+
+    * .\programa.exe
+
+
 VIDEO:
 
 Registro detallado del uso de Inteligencia Artificial:
@@ -35,3 +62,7 @@ Registro detallado del uso de Inteligencia Artificial:
 "error 'Include is not used'" [el codigo no lee los include porque no los necesita, nos
 dimos cuenta que teniamos muchos include puestos en lugares donde no ameritaba, quitamos los include
 que no pertenecian] (gemini)
+
+
+"problema, no se compila el codigo por error 'No such file or directory en #include 'validacion.h'" 
+[gcc no podia correr el codigo correctamente dentro de visual studio code, la terminal generaba errores porque solo leia un file local sin tener en cuenta el resto, por tanto gemini me facilitó un comando para que gcc que permite ejecutar el codigo en la terminal sin ningun error] (gemini)
