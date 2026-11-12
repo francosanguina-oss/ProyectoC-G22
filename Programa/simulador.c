@@ -27,18 +27,25 @@ void Configurar(struct Nave *minave)       /* *minave = minave */ /* ahora P se 
 
 
 float Energia_cinetica(struct Nave *minave)
-  {
+{
     float energia;
 
     energia = 0.5 * (*minave).Masa * (*minave).Velocidad * (*minave).Velocidad;
 
   printf("La energia cinetica es: %f", energia); 
   return energia;
-  }
+}
 
 
+void Trabajo(struct Nave *minave)        
+{ 
+  double trabajo;
 
-void Trabajo(struct Nave *minave)          { printf("[Trabajo: en construccion]\n"); }
+  trabajo = 0.5 * (*minave).Masa * (*minave).Velocidad * (*minave).Velocidad;
+
+  printf("Trabajo de la nave: %.2f J\n", trabajo);
+}
+
 void Simulacion(struct Nave *minave)       { printf("[Simulacion: en construccion]\n"); }
 void Comparar_energia(struct Nave *minave) { printf("[Comparar energia: en construccion]\n"); }
 void Reporte_final(struct Nave *minave)    { printf("[Reporte final: en construccion]\n"); }
