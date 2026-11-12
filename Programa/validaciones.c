@@ -3,7 +3,7 @@
 #include <stdio.h>
 
 /* Respuesta teorica: por que la ida requiere mas combustible que el regreso */
-void Justificacion_energetica(void)
+void Justificacion_energetica(void) /*simulador.c*/
 {
     printf("\n====================================================\n");
     printf("POR QUE LA IDA TIERRA->LUNA REQUIERE MUCHO MAS\n");
