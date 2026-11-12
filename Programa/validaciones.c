@@ -47,3 +47,24 @@ void menu_principal(void)  /* esto va en validaciones.c */
         }
     } while (opcion != 0);
 }
+
+double Leer_valor(double min, double max)
+{
+    double valor;
+    int valido;
+
+    do {
+        if (scanf("%lf", &valor) != 1 || getchar() != '\n') {
+            while (getchar() != '\n') { }
+            printf("Error. Debe ingresar un numero: ");
+            valido = 0;
+        } else if (valor < min || valor > max) {
+            printf("Error. El valor debe estar entre %.0f y %.0f: ", min, max);
+            valido = 0;
+        } else {
+            valido = 1;
+        }
+    } while (valido == 0);
+
+    return valor;
+}
