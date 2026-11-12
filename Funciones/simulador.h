@@ -18,3 +18,5 @@ void Comparar_energia(struct Nave *minave);
 void Reporte_final(struct Nave *minave);
 
 #endif
+
+void Trabajo(struct Nave *minave)
