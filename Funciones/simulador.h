@@ -7,11 +7,12 @@ struct Nave
 {
 int Masa;
 int Velocidad;
-int Combustible;
+int Altitud;
 };
 
+void Inicializacion_Nave(struct Nave *minave);
 void Configurar(struct Nave *minave);
-double Energia_cinetica(struct Nave *minave);
+float Energia_cinetica(struct Nave *minave);
 void Trabajo(struct Nave *minave);
 void Simulacion(struct Nave *minave);
 void Comparar_energia(struct Nave *minave);

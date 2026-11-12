@@ -61,6 +61,7 @@ void menu_principal(void)  /* esto va en validaciones.c */
 {
     int opcion;
     struct Nave minave = {0};             /*nuevo (P)*/ /*todos los valores en nave son 0*/
+    Inicializacion_Nave(&minave);
 
     do {
 

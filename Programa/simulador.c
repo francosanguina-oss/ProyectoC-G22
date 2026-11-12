@@ -3,21 +3,28 @@ actualizacion de estado de juego y logica de negocio*/
 #include "simulador.h" /* se usa este */
 #include <stdio.h>
 
+void Inicializacion_Nave(struct Nave *minave)
+{
+  (*minave).Masa = 26000;              /*Kg*/
+  (*minave).Velocidad = 10900;         /*m/s*/
+  (*minave).Altitud = 70000;          /*Km*/
+}
+
 void Configurar(struct Nave *minave)       /* *minave = minave */ /* ahora P se llama minave */ 
 { 
   
-  printf("introduce masa: ");
+  printf("introduce Masa: ");
   scanf("%d", &(*minave).Masa);       /* esc() = P.masa */  /* scan f se comporta como puntero  *scanf = P.masa */
   
-  printf("introduce v: ");
+  printf("introduce Velocidad: ");
   scanf("%d", &(*minave).Velocidad);
 
-  printf("introduce com: ");
-  scanf("%d", &(*minave).Combustible); 
+  printf("introduce Altitud: ");
+  scanf("%d", &(*minave).Altitud); 
   
   printf("Masa elegida: %d\n", (*minave).Masa);
   printf("Velocidad elegido: %d\n", (*minave).Velocidad);
-  printf("Combustible elegido: %d\n", (*minave).Combustible);
+  printf("Altitud elegida: %d\n", (*minave).Altitud);
 
     printf("PROCESO TERMINADO\n"); 
 }
@@ -26,11 +33,11 @@ void Configurar(struct Nave *minave)       /* *minave = minave */ /* ahora P se 
 
 
 
-double Energia_cinetica(struct Nave *minave)
+float Energia_cinetica(struct Nave *minave)
 {
-    double energia;
+  float energia;
 
-    energia = 0.5 * (*minave).Masa * (*minave).Velocidad * (*minave).Velocidad;
+  energia = 0.5 * (*minave).Masa * (*minave).Velocidad * (*minave).Velocidad;
 
   printf("La energia cinetica es: %.2f J\n", energia); 
   return energia;
