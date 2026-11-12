@@ -5,13 +5,14 @@ y prototipos de funciones publicas de la simulacion*/
 
 struct Nave
 {
-int Masa;
-int Velocidad;
-int Combustible;
+double Masa;
+double Velocidad;
+double Altitud;
 };
 
+void Inicializacion_Nave(struct Nave *minave);
 void Configurar(struct Nave *minave);
-void Energia_cinetica(struct Nave *minave);
+float Energia_cinetica(struct Nave *minave);
 void Trabajo(struct Nave *minave);
 void Simulacion(struct Nave *minave);
 void Comparar_energia(struct Nave *minave);
