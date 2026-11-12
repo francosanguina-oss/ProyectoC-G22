@@ -26,13 +26,13 @@ void Configurar(struct Nave *minave)       /* *minave = minave */ /* ahora P se 
 
 
 
-float Energia_cinetica(struct Nave *minave)
+double Energia_cinetica(struct Nave *minave)
 {
-    float energia;
+    double energia;
 
     energia = 0.5 * (*minave).Masa * (*minave).Velocidad * (*minave).Velocidad;
 
-  printf("La energia cinetica es: %f", energia); 
+  printf("La energia cinetica es: %.2f J\n", energia); 
   return energia;
 }
 
