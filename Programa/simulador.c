@@ -3,6 +3,8 @@ actualizacion de estado de juego y logica de negocio*/
 #include "simulador.h" /* se usa este */
 #include <stdio.h>
 #include "validaciones.h"
+
+
 void Inicializacion_Nave(struct Nave *minave)
 {
   (*minave).Masa = 26000;              /*Kg*/
@@ -19,10 +21,6 @@ void Configurar(struct Nave *minave)
     minave->Velocidad = Leer_valor(7800, 12000);
 }
 
-
-
-
-
 float Energia_cinetica(struct Nave *minave)
 {
   float energia;
@@ -32,7 +30,6 @@ float Energia_cinetica(struct Nave *minave)
   printf("La energia cinetica es: %.2f J\n", energia); 
   return energia;
 }
-
 
 void Trabajo(struct Nave *minave)        
 { 
@@ -44,6 +41,20 @@ void Trabajo(struct Nave *minave)
 }
 
 void Simulacion(struct Nave *minave)       { printf("[Simulacion: en construccion]\n"); }
+
+void Reporte_final(struct Nave *minave)    
+{ 
+  printf("====================================================\n\n");
+  printf("                    REPORTE FINAL	                		\n");
+  printf("====================================================\n\n");
+
+  printf("Masa elegida: %d\n", (*minave).Masa);
+  printf("Velocidad elegido: %d\n", (*minave).Velocidad);
+  printf("Altitud de la nave: %d\n", (*minave).Altitud);
+  Energia_cinetica(&minave);
+  Trabajo(&minave);
+}
+
 /* Respuesta teorica: por que la ida requiere mas combustible que el regreso */
 void Justificacion_energetica(void) /*simulador.c*/
 {
@@ -98,4 +109,3 @@ void Justificacion_energetica(void) /*simulador.c*/
     printf("   combustible significativamente mayor.\n");
     printf("====================================================\n\n");
 }
-void Reporte_final(struct Nave *minave)    { printf("[Reporte final: en construccion]\n"); }

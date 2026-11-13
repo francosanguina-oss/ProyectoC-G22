@@ -68,3 +68,14 @@ double Leer_valor(double min, double max)
 
     return valor;
 }
+
+bool estaEnMargen(double valor, int objetivo, int margen) 		/* objetivo: valor optimo*/     /* margen: margen de error permitido*/
+{
+    int minimo = objetivo - margen; /*10 - 10 = 0*/      /* +-10 */
+    int maximo = objetivo + margen; /* 10 + 10 = 20 */ 
+
+    if (valor >= minimo && valor <= maximo) 
+    { return true;  }  /*dentro de rango*/ 
+    else
+    { return false; }  /*fuera de rango*/
+}
