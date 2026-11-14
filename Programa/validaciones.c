@@ -1,7 +1,7 @@
 #include "validaciones.h"
 #include "simulador.h"
 #include <stdio.h>
-
+#include <stdbool.h>
 
 void menu_principal(void)  /* esto va en validaciones.c */
 {
