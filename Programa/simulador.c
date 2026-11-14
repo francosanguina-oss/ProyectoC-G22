@@ -222,20 +222,20 @@ void Reporte_final(struct Nave *minave)
   
   if (estaEnMargen((*minave).Masa, 26000, 1000) == true) 
   { printf("Masa / EXITOSA\n"); }
-  else { printf("Masa / FRACASO\n");}
+  else { printf("Masa / FRACASO [Intentá con valores cercanos a 26000]\n");}
 
 
   if (estaEnMargen((*minave).Velocidad, 10900, 50) == true) 
   { printf("Velocidad / EXITOSA\n"); }
-  else { printf("Velocidad / FRACASO\n");}
+  else { printf("Velocidad / FRACASO [Intentá con valores MUY cercanos a 10900]\n");}
 
   if (estaEnMargen(Energia_cinetica(minave), 1544530034688, 1.54453e+12) == true) 
   { printf("Energia Cinetica / EXITOSA\n"); }
   else { printf("Energia cinetica / FRACASO\n");}
 
 if (estaEnMargen(Trabajo(minave), 29099659, 145498) == true) 
-  { printf("Energia Cinetica / EXITOSA\n\n"); }
-  else { printf("Energia cinetica / FRACASO\n\n");}
+  { printf("Trabajo / EXITOSO\n\n"); }
+  else { printf("Trabajo / FRACASO\n\n");}
 }
 
 
