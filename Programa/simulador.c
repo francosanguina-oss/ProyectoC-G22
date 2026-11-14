@@ -4,6 +4,7 @@ actualizacion de estado de juego y logica de negocio*/
 #include <stdio.h>
 #include "validaciones.h"
 #include <math.h>
+#include "raylib.h"
 
 
 void Inicializacion_Nave(struct Nave *minave)
@@ -69,7 +70,142 @@ double Trabajo(struct Nave *minave)
     return trabajo_por_masa;
 }
 
-void Simulacion(struct Nave *minave)       { printf("[Simulacion: en construccion]\n"); }
+
+static Vector2 Punto_trayectoria(Vector2 a, Vector2 c, Vector2 b, float t)
+{
+    float u = 1.0f - t;
+    Vector2 p;
+    p.x = u * u * a.x + 2.0f * u * t * c.x + t * t * b.x;
+    p.y = u * u * a.y + 2.0f * u * t * c.y + t * t * b.y;
+    return p;
+}
+
+
+/* ok[0]=masa, ok[1]=velocidad, ok[2]=energia cinetica, ok[3]=trabajo. */
+/* Devuelve true si TODOS los valores estan dentro del margen. */
+bool Evaluar_mision(struct Nave *minave, bool ok[4])
+{
+    if (estaEnMargen(minave->Masa, 26000, 1000) == true)
+    { ok[0] = true; }
+    else { ok[0] = false; }
+
+    if (estaEnMargen(minave->Velocidad, 10900, 50) == true)
+    { ok[1] = true; }
+    else { ok[1] = false; }
+
+    if (estaEnMargen(Energia_cinetica(minave), 1544530034688, 1.54453e+12) == true)
+    { ok[2] = true; }
+    else { ok[2] = false; }
+
+    if (estaEnMargen(Trabajo(minave), 29099659, 145498) == true)
+    { ok[3] = true; }
+    else { ok[3] = false; }
+
+    return ok[0] && ok[1] && ok[2] && ok[3];
+}
+
+
+void Simulacion(struct Nave *minave)
+{
+    const int ANCHO = 1000;
+    const int ALTO = 600;
+    const float T_FALLO = 0.90f;          
+
+    Vector2 tierra  = { 150.0f, 350.0f };
+    Vector2 luna    = { 850.0f, 300.0f };
+    Vector2 inicio  = { 205.0f, 340.0f }; /* de aca sale la nave */
+    Vector2 control = { 500.0f, 80.0f };  
+    Vector2 llegada = { 820.0f, 290.0f }; 
+
+    bool ok[4];
+    bool exito;
+    float t_final;
+    float t = 0.0f;
+    float vel;
+    int i;
+
+    exito = Evaluar_mision(minave, ok);
+    if (exito == true) { t_final = 1.0f; }
+    else { t_final = T_FALLO; }
+
+    /* mas velocidad = la nave avanza mas rapido en pantalla */
+    vel = 0.12f * (float)(minave->Velocidad / 10900.0);
+
+    SetTraceLogLevel(LOG_WARNING);
+    InitWindow(ANCHO, ALTO, "Artemis - Inyeccion Translunar (TLI)");
+    SetTargetFPS(60);
+
+    while (!WindowShouldClose() && !IsKeyPressed(KEY_ENTER))
+    {
+        Vector2 pos;
+        Vector2 pos2;
+        float angulo;
+
+        if (t < t_final)
+        {
+            t += GetFrameTime() * vel;
+            if (t > t_final) { t = t_final; }
+        }
+
+        pos = Punto_trayectoria(inicio, control, llegada, t);
+        pos2 = Punto_trayectoria(inicio, control, llegada, t + 0.01f);
+        angulo = atan2f(pos2.y - pos.y, pos2.x - pos.x) * RAD2DEG;
+
+        BeginDrawing();
+        ClearBackground(BLACK);
+
+        /* trayectoria planeada */
+        for (i = 0; i <= 60; i++)
+        {
+            DrawCircleV(Punto_trayectoria(inicio, control, llegada, i / 60.0f), 1.5f, DARKGRAY);
+        }
+
+        /* trayectoria recorrida (estela) */
+        for (i = 0; i < 100; i++)
+        {
+            Vector2 p1 = Punto_trayectoria(inicio, control, llegada, t * i / 100.0f);
+            Vector2 p2 = Punto_trayectoria(inicio, control, llegada, t * (i + 1) / 100.0f);
+            DrawLineEx(p1, p2, 2.0f, SKYBLUE);
+        }
+
+        /* tierra luna y nave */
+        DrawCircleV(tierra, 50.0f, BLUE);
+        DrawText("Tierra", (int)tierra.x - 25, (int)tierra.y + 60, 20, WHITE);
+        DrawCircleV(luna, 18.0f, LIGHTGRAY);
+        DrawText("Luna", (int)luna.x - 20, (int)luna.y + 28, 20, WHITE);
+        DrawPoly(pos, 3, 9.0f, angulo, WHITE);   
+
+        /*datos en pantalla*/
+        DrawText(TextFormat("Masa: %.0f kg   Velocidad TLI: %.0f m/s",
+                 minave->Masa, minave->Velocidad), 20, 15, 20, RAYWHITE);
+        DrawText("ENTER: cerrar y volver a la terminal", 20, ALTO - 30, 18, GRAY);
+
+        /* resulktados */
+        if (t >= t_final)
+        {
+            if (exito == true)
+            {
+                const char *texto_ok = "MISION EXITOSA";
+                DrawText(texto_ok, (ANCHO - MeasureText(texto_ok, 50)) / 2, 100, 50, GREEN);
+            }
+            else
+            {
+                const char *titulo = "LA SIMULACIÓN FRACASO";
+                DrawRectangle(0, 0, ANCHO, ALTO, Fade(RED, 0.35f));
+                DrawText(titulo, (ANCHO - MeasureText(titulo, 50)) / 2, 100, 50, WHITE);
+
+                if (ok[0] == false) { DrawText("- Masa fuera de margen", 300, 200, 24, WHITE); }
+                if (ok[1] == false) { DrawText("- Velocidad fuera de margen", 300, 235, 24, WHITE); }
+                if (ok[2] == false) { DrawText("- Energia cinetica fuera de margen", 300, 270, 24, WHITE); }
+                if (ok[3] == false) { DrawText("- Trabajo fuera de margen", 300, 305, 24, WHITE); }
+            }
+        }
+
+        EndDrawing();
+    }
+
+    CloseWindow();   
+}
 
 void Reporte_final(struct Nave *minave)    
 { 

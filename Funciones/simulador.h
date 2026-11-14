@@ -2,6 +2,7 @@
 y prototipos de funciones publicas de la simulacion*/
 #ifndef SIMULADOR_H
 #define SIMULADOR_H
+#include <stdbool.h>
 
 struct Nave
 {
@@ -17,7 +18,7 @@ double Trabajo(struct Nave *minave);
 void Simulacion(struct Nave *minave);
 void Justificacion_energetica(void);
 void Reporte_final(struct Nave *minave);
-
+bool Evaluar_mision(struct Nave *minave, bool ok[4]);
 
 #endif
 
