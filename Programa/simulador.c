@@ -213,9 +213,9 @@ void Reporte_final(struct Nave *minave)
   printf("                    REPORTE FINAL	                		\n");
   printf("====================================================\n\n");
 
-  printf("Masa elegida: %d\n", (*minave).Masa);
-  printf("Velocidad elegido: %d\n", (*minave).Velocidad);
-  printf("Altitud de la nave: %d\n", (*minave).Altitud);
+  printf("Masa elegida: %.2f\n", (*minave).Masa);
+  printf("Velocidad elegida: %.2f\n", (*minave).Velocidad);
+  printf("Altitud de la nave: %.2f\n", (*minave).Altitud);
   Energia_cinetica(minave);
   Trabajo(minave);
 
