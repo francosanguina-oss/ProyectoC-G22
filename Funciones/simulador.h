@@ -12,8 +12,8 @@ double Altitud;
 
 void Inicializacion_Nave(struct Nave *minave);
 void Configurar(struct Nave *minave);
-float Energia_cinetica(struct Nave *minave);
-void Trabajo(struct Nave *minave);
+double Energia_cinetica(struct Nave *minave);
+double Trabajo(struct Nave *minave);
 void Simulacion(struct Nave *minave);
 void Justificacion_energetica(void);
 void Reporte_final(struct Nave *minave);

@@ -21,9 +21,9 @@ void Configurar(struct Nave *minave)
     minave->Velocidad = Leer_valor(7800, 12000);
 }
 
-float Energia_cinetica(struct Nave *minave)
+double Energia_cinetica(struct Nave *minave)
 {
-  float energia;
+  double energia;
 
   energia = 0.5 * (*minave).Masa * (*minave).Velocidad * (*minave).Velocidad;
 
@@ -31,13 +31,47 @@ float Energia_cinetica(struct Nave *minave)
   return energia;
 }
 
-void Trabajo(struct Nave *minave)        
-{ 
-  double trabajo;
+double Trabajo(struct Nave *minave)        
+{
+    /* Constantes físicas para realizar el calculo */
+    const double G = 6.67430e-11;
+    const double M_TIERRA = 5.972e24;
+    const double R_TIERRA = 6371000.0;
+    const double M_LUNA = 7.348e22;
+    const double D_TIERRA_LUNA = 384400000.0;
 
-  trabajo = 0.5 * (*minave).Masa * (*minave).Velocidad * (*minave).Velocidad + (*minave).Masa*9.8* (*minave).Altitud;
+    /* 1. Se calculan las distancias de partida */
+    double h = 192000.0;
+    double r_tierra_ini = R_TIERRA + h;
+    double r_luna_ini = D_TIERRA_LUNA - r_tierra_ini;
 
-  printf("Trabajo de la nave: %.2f J\n", trabajo);
+    /* Calculamos la velocidad orbital inicial */
+    double v_ini = sqrt((G * M_TIERRA) / r_tierra_ini);
+
+    /* Calculamos la energia mecanica inicial */	
+    double k_ini = 0.5 * v_ini * v_ini;
+    double u_ini = -(G * M_TIERRA / r_tierra_ini) - (G * M_LUNA / r_luna_ini);
+    double em_ini = k_ini + u_ini;
+
+    /* 2. se calcula el punto de equilibrio gravitatorio (g Tierra == g Luna) */
+    double factor = sqrt(M_LUNA / M_TIERRA);
+    double r_tierra_eq = D_TIERRA_LUNA / (1.0 + factor);
+    double r_luna_eq = D_TIERRA_LUNA - r_tierra_eq;
+
+    /* 3. Calculamos la energia mecanica final */
+    double k_fin = 0.0;
+    double u_fin = -(G * M_TIERRA / r_tierra_eq) - (G * M_LUNA / r_luna_eq);
+    double em_fin = k_fin + u_fin;
+
+    /* 4. Se calcula el trabajo mecanico */
+    double trabajo_por_masa = em_fin - em_ini;
+    double trabajo_julios = trabajo_por_masa * (*minave).Masa;
+
+    printf("Velocidad orbital calculada: %.2f m/s\n", v_ini);
+    printf("Trabajo minimo por unidad de masa: %.2f J/kg\n", trabajo_por_masa);
+    printf("Trabajo total de la nave: %.2f J\n", trabajo_julios);
+
+    return trabajo_julios;
 }
 
 void Simulacion(struct Nave *minave)       { printf("[Simulacion: en construccion]\n"); }
@@ -51,9 +85,10 @@ void Reporte_final(struct Nave *minave)
   printf("Masa elegida: %d\n", (*minave).Masa);
   printf("Velocidad elegido: %d\n", (*minave).Velocidad);
   printf("Altitud de la nave: %d\n", (*minave).Altitud);
-  Energia_cinetica(&minave);
-  Trabajo(&minave);
+  Energia_cinetica(minave);
+  Trabajo(minave);
 }
+
 
 /* Respuesta teorica: por que la ida requiere mas combustible que el regreso */
 void Justificacion_energetica(void) /*simulador.c*/
