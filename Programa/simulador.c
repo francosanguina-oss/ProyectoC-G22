@@ -34,6 +34,8 @@ double Energia_cinetica(struct Nave *minave)
 
 double Trabajo(struct Nave *minave)        
 {
+    (void)minave;
+    
     /* Constantes físicas para realizar el calculo */
     const double G = 6.67430e-11;
     const double M_TIERRA = 5.972e24;

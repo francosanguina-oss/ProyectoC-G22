@@ -38,13 +38,26 @@ Una vez ingresados los valores, el simulador realiza las correspondientes valida
 De esta manera, el usuario puede realizar distintos intentos y comprender cómo influyen los parámetros ingresados en el desarrollo de la misión.
 
 
-## Instrucciones claras de compilación y ejecución; 
+# Instrucciones claras de compilación y ejecución; 
 
 
 Usamos visual studio para la creacion y compilacion del codigo.
 Para ejecutar el simulador, asegúrese de tener instalado el compilador de C llamado "gcc" en su sistema.
 
-### Pasos para compilar y ejecutar:
+## Pasos para compilar y ejecutar (Opcion 1)
+
+1. Abra la terminal en la raíz del proyecto (Proyecto_Artemis).
+
+
+2. Compilar y ejecutar el proyecto:
+
+
+### coloque el siguiente codigo en la terminal:
+
+    mingw32-make run
+
+
+## Pasos para compilar y ejecutar: (Opcion 2)
 
 1. Abra la terminal en la raíz del proyecto (Proyecto_Artemis).
 
