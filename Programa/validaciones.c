@@ -19,7 +19,7 @@ void menu_principal(void)  /* esto va en validaciones.c */
         printf("2. Calcular energia cinetica inicial\n");
         printf("3. Calcular trabajo hasta punto de equilibrio\n");
         printf("4. Simular viaje translunar (por turnos)\n");
-        printf("5. Comparar combustible ida vs. vuelta\n");
+        printf("5. Combustible ida vs. vuelta explicacion\n");
         printf("6. Ver reporte final\n");
         printf("0. Salir\n");
         printf("Ingrese una opcion: ");
@@ -32,9 +32,9 @@ void menu_principal(void)  /* esto va en validaciones.c */
         if (opcion == 1) {
             Configurar(&minave);
         } else if (opcion == 2) {
-            Energia_cinetica(&minave);
+            printf("La energia cinetica es: %.2f J\n\n", Energia_cinetica(&minave));
         } else if (opcion == 3) {
-            Trabajo(&minave);
+            printf("Trabajo minimo por unidad de masa: %.2f J/kg\n\n", Trabajo(&minave));
         } else if (opcion == 4) {
             Simulacion(&minave);
         } else if (opcion == 5) {
@@ -44,7 +44,7 @@ void menu_principal(void)  /* esto va en validaciones.c */
         } else if (opcion == 0) {
             printf("Gracias por usar esta simulacion!\n");
         } else {
-            printf("Opcion no valida. Vuelva a intentarlo.\n");
+            printf("Opcion no valida. Vuelva a intentarlo.\n\n");
         }
     } while (opcion != 0);
 }
@@ -70,10 +70,10 @@ double Leer_valor(double min, double max)
     return valor;
 }
 
-bool estaEnMargen(double valor, int objetivo, int margen) 		/* objetivo: valor optimo*/     /* margen: margen de error permitido*/
+bool estaEnMargen(double valor, long long objetivo, long long margen) 		/* objetivo: valor optimo*/     /* margen: margen de error permitido*/
 {
-    int minimo = objetivo - margen; /*10 - 10 = 0*/      /* +-10 */
-    int maximo = objetivo + margen; /* 10 + 10 = 20 */ 
+    long long minimo = objetivo - margen; /*10 - 10 = 0*/      /* +-10 */
+    long long maximo = objetivo + margen; /* 10 + 10 = 20 */ 
 
     if (valor >= minimo && valor <= maximo) 
     { return true;  }  /*dentro de rango*/ 

@@ -27,8 +27,7 @@ double Energia_cinetica(struct Nave *minave)
   double energia;
 
   energia = 0.5 * (*minave).Masa * (*minave).Velocidad * (*minave).Velocidad;
-
-  printf("La energia cinetica es: %.2f J\n", energia); 
+ 
   return energia;
 }
 
@@ -66,20 +65,15 @@ double Trabajo(struct Nave *minave)
 
     /* 4. Se calcula el trabajo mecanico */
     double trabajo_por_masa = em_fin - em_ini;
-    double trabajo_julios = trabajo_por_masa * (*minave).Masa;
 
-    printf("Velocidad orbital calculada: %.2f m/s\n", v_ini);
-    printf("Trabajo minimo por unidad de masa: %.2f J/kg\n", trabajo_por_masa);
-    printf("Trabajo total de la nave: %.2f J\n", trabajo_julios);
-
-    return trabajo_julios;
+    return trabajo_por_masa;
 }
 
 void Simulacion(struct Nave *minave)       { printf("[Simulacion: en construccion]\n"); }
 
 void Reporte_final(struct Nave *minave)    
 { 
-  printf("====================================================\n\n");
+  printf("====================================================\n");
   printf("                    REPORTE FINAL	                		\n");
   printf("====================================================\n\n");
 
@@ -88,6 +82,24 @@ void Reporte_final(struct Nave *minave)
   printf("Altitud de la nave: %d\n", (*minave).Altitud);
   Energia_cinetica(minave);
   Trabajo(minave);
+
+  
+  if (estaEnMargen((*minave).Masa, 26000, 1000) == true) 
+  { printf("Masa / EXITOSA\n"); }
+  else { printf("Masa / FRACASO\n");}
+
+
+  if (estaEnMargen((*minave).Velocidad, 10900, 50) == true) 
+  { printf("Velocidad / EXITOSA\n"); }
+  else { printf("Velocidad / FRACASO\n");}
+
+  if (estaEnMargen(Energia_cinetica(minave), 1544530034688, 1.54453e+12) == true) 
+  { printf("Energia Cinetica / EXITOSA\n"); }
+  else { printf("Energia cinetica / FRACASO\n");}
+
+if (estaEnMargen(Trabajo(minave), 29099659, 145498) == true) 
+  { printf("Energia Cinetica / EXITOSA\n\n"); }
+  else { printf("Energia cinetica / FRACASO\n\n");}
 }
 
 
