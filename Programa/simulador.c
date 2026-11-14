@@ -3,6 +3,7 @@ actualizacion de estado de juego y logica de negocio*/
 #include "simulador.h" /* se usa este */
 #include <stdio.h>
 #include "validaciones.h"
+#include <math.h>
 
 
 void Inicializacion_Nave(struct Nave *minave)
